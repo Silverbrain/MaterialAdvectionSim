@@ -13,7 +13,7 @@ $$
 - **Logarithmic Velocity Profile**: Applies a height-dependent velocity profile to simulate the horizontal wind speed in the atmospheric boundary layer.
 
 $$
-v_x(z) = \frac{u_*}{\kappa} ln \left(\frac{z}{z0}\right)
+v_x(z) = \frac{u_\ast}{\kappa} ln \left(\frac{z}{z0}\right)
 $$
 
 - **Time Evolution**: Uses finite difference approximations to compute the advection over a set number of time steps.
@@ -78,7 +78,7 @@ gnuplot plotfinal.gp
 - **Boundary Conditions**: Material is introduced into the domain from the left boundary, while other boundaries are assigned a value of zero.
 - **Logarithmic Wind Profile**: The horizontal wind speed is computed using a logarithmic profile, with constants:
 
-  - $u^\ast = 0.1 m/s$
+  - $u_\ast = 0.1 m/s$
   - Roughness length $z_0 = 1.0 m$
   - Von Kármán constant $\kappa = 0.41$
 - **Time Stepping**: The program uses the CFL condition for stable time stepping, with a CFL number of 0.9 and a total of 1000 time steps.
