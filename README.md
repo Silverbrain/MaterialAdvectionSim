@@ -24,11 +24,7 @@ The program generates two output files:
 
 1. `initial.dat`: Contains the initial values of the scalar field `u(x, y)` at the start of the simulation.
 
-![Initial state](https://github.com/Silverbrain/MaterialAdvectionSim/blob/main/final_task2.png)
-
 2. `final.dat`: Contains the final values of `u(x, y)` after the simulation completes.
-
-![Advected state](https://github.com/Silverbrain/MaterialAdvectionSim/blob/main/final_task3.png)
 
 Both files contain three columns: `x`, `y`, and `u`, representing the spatial coordinates and the scalar field's value at those coordinates.
 
@@ -55,7 +51,18 @@ After compiling, you can run the executable as follows:
 ./advection2D
 ```
 
-This will generate two output files: `initial.dat` and `final.dat`, containing the initial and final values of the scalar field.
+This will generate two output files: `initial.dat` and `final.dat`, containing the initial and final values of the scalar field. You can also visualise them with the provided gnuplot scripts by running:
+
+```bash
+gnuplot plotinit.gp
+```
+![Initial state](https://github.com/Silverbrain/MaterialAdvectionSim/blob/main/final_task2.png)
+
+
+```bash
+gnuplot plotfinal.gp
+```
+![Advected state](https://github.com/Silverbrain/MaterialAdvectionSim/blob/main/final_task3.png)
 
 ## Implementation Details
 
