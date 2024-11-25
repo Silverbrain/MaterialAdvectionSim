@@ -1,10 +1,14 @@
 # 2D Advection Simulation Program
 
-This project simulates 2D advection using a Gaussian distribution within a domain that mimics the atmospheric boundary layer. The simulation calculates how a cloud of material, represented by the Gaussian, moves horizontally over time based on a velocity profile that varies logarithmically with height.
+This project simulates 2D advection using a Gaussian distribution within a domain that mimics the atmospheric boundary layer. The simulation calculates how a cloud of material, represented by the Gaussian `u(x,y)`, moves horizontally over time based on a velocity profile that varies logarithmically with height.
+
+$$
+\frac{\partial{u}}{\partial{t}}= - \left(v_x \frac{\partial{u}}{\partial{x}} + v_y \frac{\partial{u}}{\partial{y}}\right)
+$$
 
 ## Features
 
-- **Customizable Gaussian Initial Conditions**: Initializes a Gaussian distribution representing the material cloud.
+- **Customizable Gaussian Initial Conditions**: Initialises a Gaussian distribution representing the material cloud.
 - **Boundary Conditions**: Implements boundary conditions for all sides of the computational domain.
 - **Logarithmic Velocity Profile**: Applies a height-dependent velocity profile to simulate the horizontal wind speed in the atmospheric boundary layer.
 
@@ -12,10 +16,13 @@ $$
 v_x(z) = \frac{u_*}{\kappa} ln \left(\frac{z}{z0}\right)
 $$
 
-- **Time Evolution**: Uses finite difference approximations and the CFL condition to compute the advection over a set number of time steps.
+- **Time Evolution**: Uses finite difference approximations to compute the advection over a set number of time steps.
 
 $$
-\frac{\partial{u}}{\partial{t}}= - \left(v_x \frac{\partial{u}}{\partial{x}} + v_y \frac{\partial{u}}{\partial{y}}\right)
+\frac{\partial{u}}{\partial{x}} \approx \left(\frac{u_{i,j} - u_{i-1,j}}{dx}\right)
+$$
+$$
+\frac{\partial{u}}{\partial{y}} \approx \left(\frac{u_{i,j} - u_{i,j-1}}{dy}\right)
 $$
 
 ## Program Output
@@ -34,13 +41,14 @@ Both files contain three columns: `x`, `y`, and `u`, representing the spatial co
 ### Prerequisites
 
 - **GCC Compiler**: Ensure that GCC is installed on your system. The program is written in C and tested with `gcc`.
+- **OpenMP Library**: Ensure that `OpenMP` is installed on your system and accessible by `gcc`.
 
 ### Compilation
 
 To compile the program, run the following command:
 
 ```bash
-gcc -o advection2D -std=c99 advection2D.c -lm
+gcc -fopenmp -o advection2D -std=c99 advection2D.c -lm
 ```
 
 ### Running the Program
