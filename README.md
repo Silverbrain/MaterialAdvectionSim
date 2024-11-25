@@ -23,9 +23,15 @@ $$
 The program generates two output files:
 
 1. `initial.dat`: Contains the initial values of the scalar field `u(x, y)` at the start of the simulation.
+
+![Initial state](https://github.com/Silverbrain/MaterialAdvectionSim/blob/main/final_task2.png)
+
 2. `final.dat`: Contains the final values of `u(x, y)` after the simulation completes.
 
+![Advected state](https://github.com/Silverbrain/MaterialAdvectionSim/blob/main/final_task3.png)
+
 Both files contain three columns: `x`, `y`, and `u`, representing the spatial coordinates and the scalar field's value at those coordinates.
+
 
 ## Compilation and Execution
 
