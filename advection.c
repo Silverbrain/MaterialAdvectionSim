@@ -3,7 +3,7 @@
 
 
 
-Outputs: initial.dat - inital values of u(x,y)
+Outputs: initial.dat - initial values of u(x,y)
          final.dat   - final values of u(x,y)
 
          The output files have three columns: x, y, u
@@ -60,8 +60,8 @@ int main()
     const float sigma_t = 1.0;
     const float sigma_y_sqr = sigma_y * sigma_y;
     const float sigma_t_sqr = sigma_t * sigma_t;
-    float y_2; // y squared (used for boundry calculation)
-    float t_2; // t squared (used for boundry calculation)
+    float y_2; // y squared (used for boundary calculation)
+    float t_2; // t squared (used for boundary calculation)
 
     /* Time stepping parameters */
     const float CFL = 0.9;   // CFL number
@@ -87,14 +87,14 @@ int main()
     /* Array to store vertically averaged distribution of u(x,y) */
     float vert_avg[NX]; // value of average u around x-axis
 
-    float x2; // x squared (used to calculate iniital conditions)
-    float y2; // y squared (used to calculate iniital conditions)
+    float x2; // x squared (used to calculate initial conditions)
+    float y2; // y squared (used to calculate initial conditions)
 
     /* Calculate distance between points */
     float dx = (xmax - xmin) / ((float)NX);
     float dy = (ymax - ymin) / ((float)NY);
 
-    /* Calculate time step using the CFL condition */
+    /* Calculate the time step using the CFL condition */
     /* The fabs function gives the absolute value in case the velocity is -ve */
     float dt = CFL / ((fabs(velx) / dx) + (fabs(vely) / dy));
 
@@ -149,9 +149,9 @@ int main()
 
     /* LOOP 4 */
     /***************************************************************************
-    This look can not be parallelized since it is an I/O operation. In such operations each thread is trying to
-    access the same resouce and write into it. With respect to runing time and efficiency, it makes more sence to do
-    this part in serial manner.
+    This loop can not be parallelized since it is an I/O operation. In such operations, each thread is trying to
+    access the same resource and write into it. With respect to running time and efficiency, it makes more sense to do
+    this part in a serial manner.
     ***************************************************************************/
     for (int i = 0; i < NX + 2; i++)
     {
@@ -167,7 +167,7 @@ int main()
     /***************************************************************************
     This loop is the time loop and is doing an iterative operation. The value of (u) is being updated during each
     iteration of this loop so the order of the operation is important. Therefore there is no need to parallelize
-    thisloop.
+    this loop.
     ***************************************************************************/
     for (int m = 0; m < nsteps; m++)
     {
@@ -200,7 +200,7 @@ int main()
 #ifdef _OPENMP
 #pragma omp parallel for collapse(2) default(shared) private(velx)
 #endif
-        /*** Calculate rate of change of u using leftward difference ***/
+        /*** Calculate the rate of change of u using leftward difference ***/
         /* Loop over points in the domain but not boundary values */
         /* LOOP 8 */
         for (int i = 1; i < NX + 1; i++)
@@ -268,7 +268,7 @@ int main()
     /* LOOP 10 */
 
     /***************************************************************************
-    This loop is doing the same operation as "LOOP 4" therefore there is no need for parallelizing it.
+    This loop is doing the same operation as "LOOP 4" therefore there is no need for parallelising it.
     ***************************************************************************/
     for (int i = 0; i < NX + 2; i++)
     {
