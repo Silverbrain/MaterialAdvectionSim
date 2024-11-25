@@ -7,14 +7,23 @@ This project simulates 2D advection using a Gaussian distribution within a domai
 - **Customizable Gaussian Initial Conditions**: Initializes a Gaussian distribution representing the material cloud.
 - **Boundary Conditions**: Implements boundary conditions for all sides of the computational domain.
 - **Logarithmic Velocity Profile**: Applies a height-dependent velocity profile to simulate the horizontal wind speed in the atmospheric boundary layer.
+
+$$
+v_x(z) = \frac{u_*}{\kappa} ln \left(\frac{z}{z0}\right)
+$$
+
 - **Time Evolution**: Uses finite difference approximations and the CFL condition to compute the advection over a set number of time steps.
+
+$$
+\frac{\partial{u}}{\partial{t}}= - \left(v_x \frac{\partial{u}}{\partial{x}} + v_y \frac{\partial{u}}{\partial{y}}\right)
+$$
 
 ## Program Output
 
 The program generates two output files:
 
-1. `initial.dat`: Contains the initial values of the scalar field \( u(x, y) \) at the start of the simulation.
-2. `final.dat`: Contains the final values of \( u(x, y) \) after the simulation completes.
+1. `initial.dat`: Contains the initial values of the scalar field `u(x, y)` at the start of the simulation.
+2. `final.dat`: Contains the final values of `u(x, y)` after the simulation completes.
 
 Both files contain three columns: `x`, `y`, and `u`, representing the spatial coordinates and the scalar field's value at those coordinates.
 
@@ -44,13 +53,13 @@ This will generate two output files: `initial.dat` and `final.dat`, containing t
 
 ## Implementation Details
 
-- **Grid Properties**: The program defines a grid of \( 1000 	imes 1000 \) points over a domain of \( 30 \, 	ext{m} 	imes 30 \, 	ext{m} \).
+- **Grid Properties**: The program defines a grid of ($1000 	\times 1000$) points over a domain of ($30 m \times 30 m$).
 - **Boundary Conditions**: Material is introduced into the domain from the left boundary, while other boundaries are assigned a value of zero.
 - **Logarithmic Wind Profile**: The horizontal wind speed is computed using a logarithmic profile, with constants:
 
-  - \( u^* = 0.1 \, 	ext{m/s} \)
-  - Roughness length \( z_0 = 1.0 \, 	ext{m} \)
-  - Von Kármán constant \( \kappa = 0.41 \)
+  - $u^\ast = 0.1 m/s$
+  - Roughness length $z_0 = 1.0 m$
+  - Von Kármán constant $\kappa = 0.41$
 - **Time Stepping**: The program uses the CFL condition for stable time stepping, with a CFL number of 0.9 and a total of 1000 time steps.
 
 ## Notes
